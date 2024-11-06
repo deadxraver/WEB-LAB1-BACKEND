@@ -16,6 +16,18 @@ public record RequestData(int x, float y, int r) {
 					x = Integer.parseInt(data[i + 1]);
 				}
 				if (data[i].equals("y")) {
+					if (data[i + 1].contains("5.")  && data[i + 1].length() > 2) {
+						char[] s = data[i + 1].toCharArray();
+						for (int j = 2; j < s.length; j++) {
+							if (s[j] != '0') throw new NotANumberException("y");
+						}
+					}
+					else if (data[i + 1].contains("-3.") && data[i + 1].length() > 3) {
+						char[] s = data[i + 1].toCharArray();
+						for (int j = 3; j < s.length; j++) {
+							if (s[j] != '0') throw new NotANumberException("y");
+						}
+					}
 					y = Float.parseFloat(data[i + 1]);
 				}
 				if (data[i].equals("r")) {
